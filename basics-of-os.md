@@ -181,3 +181,175 @@ If you have 8 threads and 4 cores, the OS will schedule 2 threads per core (cont
 - Your programs or tasks are multi-threaded.
 - The OS can distribute tasks well.
 - You’re doing parallel-heavy work (e.g., video editing, backend servers, ML training)
+
+## What is an OS (Operating System)?
+
+An Operating System is the main software that manages all hardware and software on your computer or server.
+✅ OS = Manager between you and the machine.
+
+## 📦 Responsibilities:
+
+- Manages CPU, memory, disk, and I/O devices
+- Handles processes and threads
+- Provides user interface (GUI or CLI)
+- Manages file systems, networking, and security
+- Runs your apps by providing them system-level services
+
+## 🖥️ Examples:
+
+- Windows
+- Linux (Ubuntu, CentOS, etc.)
+- macOS
+- Android
+- iOS
+
+## ⚙️ What is the Kernel?
+
+The Kernel is the core part of the Operating System.
+| It is the bridge between the hardware and the software.
+
+### ✅ Think of it like:
+
+| OS = Hotel, and Kernel = Hotel Manager
+| Handles everything behind the scenes when a guest (your app) needs something.
+
+## 🔍 Responsibilities of Kernel:
+
+- Memory management 🧠 (Who gets how much RAM)
+- Process management 🧵 (Starting, scheduling, killing processes)
+- Device drivers 🔌 (Talking to your keyboard, mouse, disk, etc.)
+- System calls 🚪 (APIs that allow apps to ask the OS for help)
+
+## 🛠️ Types of Kernels
+
+**Type** **Description**
+Monolithic -> Everything in one big block (Linux)
+Microkernel -> Very small kernel; most services run separately (Minix, QNX)
+Hybrid -> Mix of both (Windows, macOS)
+
+**In Backend Development**
+
+- You don’t interact with the kernel directly.
+- But everything you do (file reads, server sockets, child processes) uses system calls which the kernel handles.
+- Choosing a good OS (like Linux) for servers is crucial.
+
+## From a Developer’s Perspective
+
+Let’s say you're building a backend app (like an Express.js server)
+
+- You write fs.readFile(...) to read a file → this is a system call
+- That system call goes to the kernel, which talks to the disk hardware
+- The OS gives you tools like the terminal, process manager, or even file system tools to work more easily
+
+## What is a Process?
+
+A Process is an instance of a program that is executing.
+
+|🔁 A program is just a file on disk.
+|⚙️ A process is that file running in memory.
+
+## 🔍 Example:
+
+You have node app.js on your disk (just a file).
+When you run it → 💥 a **process** is created that:
+
+- Loads code into memory
+- Uses CPU to execute it
+- Has its own memory (stack, heap)
+- Runs independently
+
+## 🧱 A Process Contains:
+
+**Component** **Description**
+Program Code -> Instructions being executed
+Memory Stack -> (function calls), Heap (dynamic data), etc.
+Registers -> CPU context (used to track progress)
+Process ID -> Unique identifier (PID)
+Open Files-> File descriptors it’s using
+Environment -> Variables and configs (e.g. PORT=3000)
+
+## ⚙️ Real Life Example
+
+When you open:
+
+- Chrome → creates 1+ processes
+- VS Code → another process
+- Terminal → another
+
+Each of these is isolated, and one crashing won’t affect the others.
+
+## 🧵 Process vs Thread (Quick Tease)
+
+**Feature** **Process** **Thread**
+Memory - Each has its own - Shares memory
+Isolation - Fully isolated- Not isolated
+Overhead - Heavier - Lightweight
+Used for - Running programs - Running tasks within a process
+
+## Summary
+
+A process is a running instance of a program — it has memory, a PID, CPU context, and runs independently.
+
+## What Is Thread, Concurrency, and Parallelism?
+
+A thread is the smallest unit of execution in a program.
+🔥 A process can have one or many threads. All threads in a process share memory.
+
+**Example**:
+
+- A backend Node.js app doing file upload can create a thread to handle image compression in the background.
+- A Java app might use one thread per client connection.
+
+## 2. What Is Concurrency?
+
+Concurrency = Dealing with multiple tasks at the same time (not necessarily doing them at the exact same moment)
+Imagine:
+
+- You’re a waiter 🧑‍🍳
+- You take Order A, then while it’s cooking, you take Order B, then Order C
+- You’re managing multiple tasks, switching between them quickly
+
+**Key point:**
+One CPU core can run multiple tasks by context switching
+
+Tasks may or may not run simultaneously
+
+- 🧠 Used when:
+- ✅ You want to make progress on many things
+- ✅ You have tasks that spend time waiting (e.g., DB, API)
+
+## 3. What Is Parallelism?
+
+Parallelism = Doing multiple tasks at the exact same time
+Imagine:
+
+- You have 3 chefs 👨‍🍳👩‍🍳👨‍🍳
+- All working on Order A, B, and C at the same time
+- That’s parallel execution — tasks are truly happening simultaneously
+
+**Key point:**
+Needs multiple CPU cores or threads
+
+Ideal for CPU-intensive tasks
+
+🧠 Used when:
+✅ You want to speed up heavy tasks
+✅ You have enough hardware (cores/threads) to run in parallel
+
+## Can a Process Exist Without a Thread?
+
+❌ No, a process cannot exist without at least one thread.
+Here’s why:
+
+🔹 A thread is what actually executes code.
+
+- When a process is created (like when you run a Node.js app or open Chrome), the OS creates one main thread for it automatically.
+
+- That main thread is responsible for starting the execution of the program.
+
+**Analogy**
+Imagine:
+
+- A process is like a kitchen (with space, tools, ingredients).
+- A thread is the chef who actually cooks.
+- ➡️ Without the chef (thread), the kitchen (process) is useless — it exists but does nothing.
