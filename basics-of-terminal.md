@@ -1,35 +1,41 @@
-#  Basics of Terminal
+# Basics of Terminal
 
 ## 1. Introduction to Terminal and Shell
+
 - The Terminal (or command-line interface) allows users to interact with their system using commands instead of a graphical interface.
 - A Shell (e.g., Bash, Zsh, PowerShell) is the command interpreter that processes these commands.
 
 ## Check your shell type using:
+
 ```sh
 echo $SHELL
 ```
 
-
 ## 2. Basic Shell Commands
-- **echo** – Prints text to the terminal:
 
+- **echo** – Prints text to the terminal:
 
   ```sh
   echo "Hello, World!"
-```
+  ```
+
+````
 - **pwd** – Displays the current directory:
 
 ```sh
 pwd
-```
+````
 
 whoami – Shows the logged-in user
+
 ```sh
 whoami
 ```
 
 ## 3. Navigating the File System (cd)
+
 cd (Change Directory) is used to move between folders.
+
 ```sh
 cd /home/user/Documents
 cd ..
@@ -37,6 +43,7 @@ cd ~  # Go to home directory
 ```
 
 ## 4. Listing Directory Contents (ls)
+
 ```sh
 ls
 ls -l  # Detailed list
@@ -44,18 +51,21 @@ ls -a  # Show hidden files
 ```
 
 ## 5. Creating, Copying, Moving, and Deleting Files and Directories
+
 ```sh
 touch file.txt  # Create a file
 mkdir my_folder  # Create a directory
 ```
 
 Copying and Moving
+
 ```sh
 cp file.txt backup.txt  # Copy file
 mv file.txt new_location/  # Move file
 ```
 
 Deleting files and directories
+
 ```sh
 rm file.txt  # Delete file
 rmdir my_folder  # Remove empty folder
@@ -63,19 +73,24 @@ rm -r my_folder  # Remove folder with contents
 ```
 
 ## 6. Viewing and Editing Files
+
 ```sh
 cat file.txt //view file content
 nano file.txt // simple text editor
 vim file.txt //advance text editor
 ```
+
 Writing a File Using nano
+
 ```sh
 nano filename.txt
 // Press CTRL + X (Exit)
 //Press Y (Yes) to confirm saving the file.
 //Press Enter to confirm the filename.
 ```
+
 Writing and Saving a File in vim
+
 ```sh
 vim filename.txt
 // :w - Save (write) the file without exiting
@@ -85,41 +100,71 @@ vim filename.txt
 ```
 
 ## 7. What Is Prompt in Terminal?
+
 The prompt is the line where you enter commands.
 Default format:
+
 ```sh
 user@hostname:~$
 ```
 
 you can customize it using:
-  ```sh
+
+```sh
 PS1="CustomPrompt> "
 ```
 
-
 ## 8. Configuring Our Terminal Using .bashrc File
+
 .bashrc is a configuration file for Bash shell that runs every time a terminal session starts.
 You can edit it to set aliases, modify the prompt, and customize the shell.
 
 ```sh
 nano ~/.bashrc
 ```
+
 Example customization:
+
 ```sh
 export PATH=$PATH:/new/path
 ```
 
 Modify .bashrc, save changes, and reload using:
+
 ```sh
 source ~/.bashrc
 ```
 
 ## 9. Using Aliases for Command Shortcuts (alias)
+
 Aliases let you create shortcuts for commands.
+
 ```sh
 alias ll="ls -lah"
 alias gs="git status"
 ```
+
 To make them permanent, add them to ~/.bashrc.
 
+## What Is an Environment Variable?
 
+An environment variable is a key-value pair used by the operating system and applications to store configuration settings and control behavior without hardcoding values into your code.
+
+A global variable that's available to your process or program when it starts.
+
+## What are Executable Files?
+
+An executable file is a file that contains machine code instructions which the operating system can run directly as a program.
+
+In simple terms:
+🔥 It's a file that, when opened, does something — like launching a program, script, or task.
+
+When you double-click or run an executable:
+
+- The OS loads the file into memory
+- It allocates resources
+- The CPU executes the instructions inside the file
+
+## Important Methods and Properties of The Process Object
+
+The process object in Node.js is a global object that provides information and control over the current Node.js process. It's always available without needing to import or require it.
